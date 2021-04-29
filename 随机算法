@@ -1,0 +1,26 @@
+<?php
+
+function randomshuffle($arr) {
+	$count = count($arr);
+	for ($i = $count-1; $i >= 0; $i--) {
+
+		$temp = $arr[$i];
+		$element = mt_rand()%($i+1);
+		$arr[$i] = $arr[$element];
+		$arr[$element] = $temp;
+		//var_dump([$i, $element]);
+	}
+	return $arr;
+}
+
+$arr = ['商品1', '商品2', '商品3', '商品4', '商品5', '商品6'];
+
+echo '<pre>';
+$res = randomshuffle($arr);
+var_dump($res);
+
+$gift = time()%count($res);
+var_dump($gift, $res[$gift]);
+
+//Knuth-Shuffle，即 Knuth 洗牌算法
+//参考文章出处：https://zhuanlan.zhihu.com/p/73147939
